@@ -8,7 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		FC84BDCC1ACEBEF100E1BB23 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC84BDCB1ACEBEF100E1BB23 /* main.swift */; };
+		FC84BDDC1ACEBF3F00E1BB23 /* JSONSearchLib.h in Headers */ = {isa = PBXBuildFile; fileRef = FC84BDDB1ACEBF3F00E1BB23 /* JSONSearchLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FC84BDE21ACEBF3F00E1BB23 /* JSONSearchLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC84BDD71ACEBF3F00E1BB23 /* JSONSearchLib.framework */; };
+		FC84BDE91ACEBF3F00E1BB23 /* JSONSearchLibTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC84BDE81ACEBF3F00E1BB23 /* JSONSearchLibTests.swift */; };
+		FC84BDF11ACEC2E300E1BB23 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC84BDF01ACEC2E300E1BB23 /* JSON.swift */; };
+		FC84BDF31ACEE02100E1BB23 /* JSonSearchTerm.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC84BDF21ACEE02100E1BB23 /* JSonSearchTerm.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FC84BDE31ACEBF3F00E1BB23 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FC84BDC01ACEBEF100E1BB23 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FC84BDD61ACEBF3F00E1BB23;
+			remoteInfo = JSONSearchLib;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		FC84BDC61ACEBEF100E1BB23 /* CopyFiles */ = {
@@ -25,6 +40,14 @@
 /* Begin PBXFileReference section */
 		FC84BDC81ACEBEF100E1BB23 /* JSONSearch */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = JSONSearch; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC84BDCB1ACEBEF100E1BB23 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		FC84BDD71ACEBF3F00E1BB23 /* JSONSearchLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JSONSearchLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC84BDDA1ACEBF3F00E1BB23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC84BDDB1ACEBF3F00E1BB23 /* JSONSearchLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSONSearchLib.h; sourceTree = "<group>"; };
+		FC84BDE11ACEBF3F00E1BB23 /* JSONSearchLibTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JSONSearchLibTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC84BDE71ACEBF3F00E1BB23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC84BDE81ACEBF3F00E1BB23 /* JSONSearchLibTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONSearchLibTests.swift; sourceTree = "<group>"; };
+		FC84BDF01ACEC2E300E1BB23 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
+		FC84BDF21ACEE02100E1BB23 /* JSonSearchTerm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSonSearchTerm.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +58,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FC84BDD31ACEBF3F00E1BB23 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC84BDDE1ACEBF3F00E1BB23 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC84BDE21ACEBF3F00E1BB23 /* JSONSearchLib.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -42,6 +80,8 @@
 			isa = PBXGroup;
 			children = (
 				FC84BDCA1ACEBEF100E1BB23 /* JSONSearch */,
+				FC84BDD81ACEBF3F00E1BB23 /* JSONSearchLib */,
+				FC84BDE51ACEBF3F00E1BB23 /* JSONSearchLibTests */,
 				FC84BDC91ACEBEF100E1BB23 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -50,6 +90,8 @@
 			isa = PBXGroup;
 			children = (
 				FC84BDC81ACEBEF100E1BB23 /* JSONSearch */,
+				FC84BDD71ACEBF3F00E1BB23 /* JSONSearchLib.framework */,
+				FC84BDE11ACEBF3F00E1BB23 /* JSONSearchLibTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -62,7 +104,54 @@
 			path = JSONSearch;
 			sourceTree = "<group>";
 		};
+		FC84BDD81ACEBF3F00E1BB23 /* JSONSearchLib */ = {
+			isa = PBXGroup;
+			children = (
+				FC84BDDB1ACEBF3F00E1BB23 /* JSONSearchLib.h */,
+				FC84BDD91ACEBF3F00E1BB23 /* Supporting Files */,
+				FC84BDF01ACEC2E300E1BB23 /* JSON.swift */,
+				FC84BDF21ACEE02100E1BB23 /* JSonSearchTerm.swift */,
+			);
+			path = JSONSearchLib;
+			sourceTree = "<group>";
+		};
+		FC84BDD91ACEBF3F00E1BB23 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FC84BDDA1ACEBF3F00E1BB23 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FC84BDE51ACEBF3F00E1BB23 /* JSONSearchLibTests */ = {
+			isa = PBXGroup;
+			children = (
+				FC84BDE81ACEBF3F00E1BB23 /* JSONSearchLibTests.swift */,
+				FC84BDE61ACEBF3F00E1BB23 /* Supporting Files */,
+			);
+			path = JSONSearchLibTests;
+			sourceTree = "<group>";
+		};
+		FC84BDE61ACEBF3F00E1BB23 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FC84BDE71ACEBF3F00E1BB23 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		FC84BDD41ACEBF3F00E1BB23 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC84BDDC1ACEBF3F00E1BB23 /* JSONSearchLib.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		FC84BDC71ACEBEF100E1BB23 /* JSONSearch */ = {
@@ -82,6 +171,42 @@
 			productReference = FC84BDC81ACEBEF100E1BB23 /* JSONSearch */;
 			productType = "com.apple.product-type.tool";
 		};
+		FC84BDD61ACEBF3F00E1BB23 /* JSONSearchLib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC84BDEA1ACEBF3F00E1BB23 /* Build configuration list for PBXNativeTarget "JSONSearchLib" */;
+			buildPhases = (
+				FC84BDD21ACEBF3F00E1BB23 /* Sources */,
+				FC84BDD31ACEBF3F00E1BB23 /* Frameworks */,
+				FC84BDD41ACEBF3F00E1BB23 /* Headers */,
+				FC84BDD51ACEBF3F00E1BB23 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JSONSearchLib;
+			productName = JSONSearchLib;
+			productReference = FC84BDD71ACEBF3F00E1BB23 /* JSONSearchLib.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		FC84BDE01ACEBF3F00E1BB23 /* JSONSearchLibTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC84BDED1ACEBF3F00E1BB23 /* Build configuration list for PBXNativeTarget "JSONSearchLibTests" */;
+			buildPhases = (
+				FC84BDDD1ACEBF3F00E1BB23 /* Sources */,
+				FC84BDDE1ACEBF3F00E1BB23 /* Frameworks */,
+				FC84BDDF1ACEBF3F00E1BB23 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FC84BDE41ACEBF3F00E1BB23 /* PBXTargetDependency */,
+			);
+			name = JSONSearchLibTests;
+			productName = JSONSearchLibTests;
+			productReference = FC84BDE11ACEBF3F00E1BB23 /* JSONSearchLibTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -92,6 +217,12 @@
 				ORGANIZATIONNAME = "Jeremy Pereira";
 				TargetAttributes = {
 					FC84BDC71ACEBEF100E1BB23 = {
+						CreatedOnToolsVersion = 6.3;
+					};
+					FC84BDD61ACEBF3F00E1BB23 = {
+						CreatedOnToolsVersion = 6.3;
+					};
+					FC84BDE01ACEBF3F00E1BB23 = {
 						CreatedOnToolsVersion = 6.3;
 					};
 				};
@@ -109,9 +240,28 @@
 			projectRoot = "";
 			targets = (
 				FC84BDC71ACEBEF100E1BB23 /* JSONSearch */,
+				FC84BDD61ACEBF3F00E1BB23 /* JSONSearchLib */,
+				FC84BDE01ACEBF3F00E1BB23 /* JSONSearchLibTests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FC84BDD51ACEBF3F00E1BB23 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC84BDDF1ACEBF3F00E1BB23 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FC84BDC41ACEBEF100E1BB23 /* Sources */ = {
@@ -122,7 +272,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FC84BDD21ACEBF3F00E1BB23 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC84BDF11ACEC2E300E1BB23 /* JSON.swift in Sources */,
+				FC84BDF31ACEE02100E1BB23 /* JSonSearchTerm.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC84BDDD1ACEBF3F00E1BB23 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC84BDE91ACEBF3F00E1BB23 /* JSONSearchLibTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FC84BDE41ACEBF3F00E1BB23 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FC84BDD61ACEBF3F00E1BB23 /* JSONSearchLib */;
+			targetProxy = FC84BDE31ACEBF3F00E1BB23 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		FC84BDCD1ACEBEF100E1BB23 /* Debug */ = {
@@ -217,6 +392,85 @@
 			};
 			name = Release;
 		};
+		FC84BDEB1ACEBF3F00E1BB23 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = JSONSearchLib/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		FC84BDEC1ACEBF3F00E1BB23 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = JSONSearchLib/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		FC84BDEE1ACEBF3F00E1BB23 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = JSONSearchLibTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FC84BDEF1ACEBF3F00E1BB23 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = JSONSearchLibTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -234,6 +488,22 @@
 			buildConfigurations = (
 				FC84BDD01ACEBEF100E1BB23 /* Debug */,
 				FC84BDD11ACEBEF100E1BB23 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		FC84BDEA1ACEBF3F00E1BB23 /* Build configuration list for PBXNativeTarget "JSONSearchLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC84BDEB1ACEBF3F00E1BB23 /* Debug */,
+				FC84BDEC1ACEBF3F00E1BB23 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		FC84BDED1ACEBF3F00E1BB23 /* Build configuration list for PBXNativeTarget "JSONSearchLibTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC84BDEE1ACEBF3F00E1BB23 /* Debug */,
+				FC84BDEF1ACEBF3F00E1BB23 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
