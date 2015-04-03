@@ -13,6 +13,8 @@
 		FC84BDE91ACEBF3F00E1BB23 /* JSONSearchLibTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC84BDE81ACEBF3F00E1BB23 /* JSONSearchLibTests.swift */; };
 		FC84BDF11ACEC2E300E1BB23 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC84BDF01ACEC2E300E1BB23 /* JSON.swift */; };
 		FC84BDF31ACEE02100E1BB23 /* JSonSearchTerm.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC84BDF21ACEE02100E1BB23 /* JSonSearchTerm.swift */; };
+		FC84BDF51ACEE30800E1BB23 /* JSONError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC84BDF41ACEE30800E1BB23 /* JSONError.swift */; };
+		FC84BDF71ACF0AAD00E1BB23 /* s10rules_england_en.json in Resources */ = {isa = PBXBuildFile; fileRef = FC84BDF61ACF0AAD00E1BB23 /* s10rules_england_en.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,8 @@
 		FC84BDE81ACEBF3F00E1BB23 /* JSONSearchLibTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONSearchLibTests.swift; sourceTree = "<group>"; };
 		FC84BDF01ACEC2E300E1BB23 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		FC84BDF21ACEE02100E1BB23 /* JSonSearchTerm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSonSearchTerm.swift; sourceTree = "<group>"; };
+		FC84BDF41ACEE30800E1BB23 /* JSONError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONError.swift; sourceTree = "<group>"; };
+		FC84BDF61ACF0AAD00E1BB23 /* s10rules_england_en.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = s10rules_england_en.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +115,7 @@
 				FC84BDD91ACEBF3F00E1BB23 /* Supporting Files */,
 				FC84BDF01ACEC2E300E1BB23 /* JSON.swift */,
 				FC84BDF21ACEE02100E1BB23 /* JSonSearchTerm.swift */,
+				FC84BDF41ACEE30800E1BB23 /* JSONError.swift */,
 			);
 			path = JSONSearchLib;
 			sourceTree = "<group>";
@@ -135,6 +140,7 @@
 		FC84BDE61ACEBF3F00E1BB23 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FC84BDF61ACF0AAD00E1BB23 /* s10rules_england_en.json */,
 				FC84BDE71ACEBF3F00E1BB23 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -258,6 +264,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC84BDF71ACF0AAD00E1BB23 /* s10rules_england_en.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC84BDF51ACEE30800E1BB23 /* JSONError.swift in Sources */,
 				FC84BDF11ACEC2E300E1BB23 /* JSON.swift in Sources */,
 				FC84BDF31ACEE02100E1BB23 /* JSonSearchTerm.swift in Sources */,
 			);

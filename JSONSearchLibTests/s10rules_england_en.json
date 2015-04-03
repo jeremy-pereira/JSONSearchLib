@@ -1,0 +1,1460 @@
+﻿{
+  "Q017" : {
+    "title" : "Demolition in a Conservation Area / Listed Building",
+    "id" : "Q017",
+    "page" : "4",
+    "rules" : [ {
+      "name" : "MustHaveRule",
+      "field" : "Q017_1",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide details of  why is it necessary to demolish all or part of the building(s) and or structure(s).",
+        "fields" : [ "Q017_1" ]
+      },
+      "must_haves" : [ "$record.ApplicationData.ProposedDemolitionWork.ReasonForDemolition" ]
+    } ]
+  },
+  "Q039" : {
+    "title" : "Site Visit",
+    "id" : "Q039",
+    "page" : "10",
+    "rules" : [ {
+      "name" : "MustHaveRule",
+      "field" : "Q039_1",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please state whether the site can be viewed from public land",
+        "fields" : [ "Q039_1" ]
+      },
+      "must_haves" : [ "$record.ApplicationData.SiteVisit.SeeSite" ]
+    }, {
+      "name" : "MustHaveRule",
+      "field" : "Q039_2",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please indicate who the contact should be for a site visit, should the planning authority require one.",
+        "fields" : [ "Q039_2" ]
+      },
+      "must_haves" : [ "$record.IndicatorEmpty.EmptySiteVisit" ]
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q039_4",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please use letters (a-z), numbers and common punctuation symbols only for the first name",
+        "fields" : [ "Q001_2" ]
+      },
+      "pattern_match" : {
+        "$record.ApplicationData.SiteVisit.VisitContactDetails.ContactOther.PersonName.PersonGivenName" : "^[\\u0000-\\u005F\\u0061-\\u007B\\u007d-\\u007f£€]*$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q039_5",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please use letters (a-z), numbers and common punctuation symbols only for the surname",
+        "fields" : [ "Q001_3" ]
+      },
+      "pattern_match" : {
+        "$record.ApplicationData.SiteVisit.VisitContactDetails.ContactOther.PersonName.PersonFamilyName" : "^[\\u0000-\\u005F\\u0061-\\u007B\\u007d-\\u007f£€]*$"
+      }
+    }, {
+      "name" : "MustHaveIfRule",
+      "field" : "Q039_5",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide a surname",
+        "fields" : [ "Q039_5" ]
+      },
+      "conditional_rule" : {
+        "$record.IndicatorEmpty.Q039" : "(eq)3"
+      },
+      "must_haves" : [ "$record.ApplicationData.SiteVisit.VisitContactDetails.ContactOther.PersonName.PersonFamilyName" ]
+    }, {
+      "name" : "MustHaveIfRule",
+      "field" : "Q039_7",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide a national telephone number",
+        "fields" : [ "Q039_7" ]
+      },
+      "conditional_rule" : {
+        "$record.IndicatorEmpty.Q039" : "(eq)3"
+      },
+      "must_haves" : [ "$record.ApplicationData.SiteVisit.VisitContactDetails.ContactOther.ContactDetails.Telephone.TelNationalNumber" ]
+    } ]
+  },
+  "Q038" : {
+    "title" : "Pre-application Advice",
+    "id" : "Q038",
+    "page" : "9",
+    "rules" : [ {
+      "name" : "MustHaveRule",
+      "field" : "Q038_1",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please define whether you have obtained pre-application advice for this application or not",
+        "fields" : [ "Q038_1" ]
+      },
+      "must_haves" : [ "$record.ApplicationData.Advice.HaveSoughtAdvice" ]
+    }, {
+      "name" : "DateRule",
+      "field" : "Q038_9",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide a valid date in the format of DD/MM/YYYY; e.g. 22/12/2008. (Please note that the year needs to be 4 digits long)",
+        "fields" : [ "Q038_9" ]
+      },
+      "date" : "$record.ApplicationData.Advice.AdviceDetails.Date",
+      "range" : "Any"
+    }, {
+      "name" : "MustHaveIfRule",
+      "field" : "Q038_9",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide a valid date in the format of DD/MM/YYYY; e.g. 22/12/2008. (Please note that the year needs to be 4 digits long)",
+        "fields" : [ "Q038_9" ]
+      },
+      "conditional_rule" : {
+        "$record.ApplicationData.Advice.HaveSoughtAdvice" : "(eq)Yes"
+      },
+      "must_haves" : [ "$record.ApplicationData.Advice.AdviceDetails.Date" ]
+    }, {
+      "name" : "MustHaveIfRule",
+      "field" : "Q038_5",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide a surname",
+        "fields" : [ "Q038_5" ]
+      },
+      "conditional_rule" : {
+        "$record.IndicatorEmpty.Q038_1" : "(eq)1"
+      },
+      "must_haves" : [ "$record.ApplicationData.Advice.AdviceDetails.ContactName.PersonFamilyName" ]
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q038_5",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please use letters (a-z), numbers and common punctuation symbols only for the first name",
+        "fields" : [ "Q038_5" ]
+      },
+      "pattern_match" : {
+        "$record.ApplicationData.Advice.AdviceDetails.ContactName.PersonGivenName" : "^[\\u0000-\\u005F\\u0061-\\u007B\\u007d-\\u007f£€]*$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q038_6",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please use letters (a-z), numbers and common punctuation symbols only for the surname",
+        "fields" : [ "Q038_6" ]
+      },
+      "pattern_match" : {
+        "$record.ApplicationData.Advice.AdviceDetails.ContactName.PersonFamilyName" : "^[\\u0000-\\u005F\\u0061-\\u007B\\u007d-\\u007f£€]*$"
+      }
+    } ]
+  },
+  "Q002" : {
+    "title" : "Agent Details",
+    "id" : "Q002",
+    "page" : "3",
+    "rules" : [ {
+      "name" : "MustHaveRule",
+      "field" : "Q001_23",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : " Please state whether you are an Agent or not",
+        "fields" : [ "Q001_23" ]
+      },
+      "must_haves" : [ "$record.IndicatorEmpty.IsAgent" ]
+    }, {
+      "name" : "OrWhenRule",
+      "field" : "Q002_5",
+      "rules" : [ {
+        "name" : "MustHaveRuleExtended",
+        "field" : "Q002_9",
+        "rules" : [ ],
+        "fileName" : "s10rules_england_en.xml",
+        "error" : {
+          "text" : "Please provide the Agent's Address",
+          "fields" : [ "Q002_5" ]
+        },
+        "must_haves" : [ "$record.Agent.ExternalAddress.InternationalAddress.IntAddressLine[4]" ]
+      } ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide the Agent's Address",
+        "fields" : [ "Q002_5" ]
+      },
+      "conditional_rule" : {
+        "$record.IndicatorEmpty.IsAgent" : "(eq)1"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q002_2",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please use letters (a-z), numbers and common punctuation symbols only for the first name",
+        "fields" : [ "Q002_2" ]
+      },
+      "pattern_match" : {
+        "$record.Agent.PersonName.PersonGivenName" : "^[\\u0000-\\u005F\\u0061-\\u007B\\u007d-\\u007f£€]*$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q002_3",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please use letters (a-z), numbers and common punctuation symbols only for the surname",
+        "fields" : [ "Q002_3" ]
+      },
+      "pattern_match" : {
+        "$record.Agent.PersonName.PersonFamilyName" : "^[\\u0000-\\u005F\\u0061-\\u007B\\u007d-\\u007f£€]*$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q002_4",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please use letters (a-z), numbers and common punctuation symbols only for the organisation name",
+        "fields" : [ "Q002_4" ]
+      },
+      "pattern_match" : {
+        "$record.Agent.OrgName" : "^[\\u0000-\\u005F\\u0061-\\u007B\\u007d-\\u007f£€]*$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q002_5",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please use letters (a-z), numbers and common punctuation symbols only for the address and postcode",
+        "fields" : [ "Q002_5" ]
+      },
+      "pattern_match" : {
+        "$record.Agent.ExternalAddress.InternationalAddress.IntAddressLine[0]" : "^[\\u0000-\\u005F\\u0061-\\u007B\\u007d-\\u007f£€]*$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q002_6",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please use letters (a-z), numbers and common punctuation symbols only for the address and postcode",
+        "fields" : [ "Q002_6" ]
+      },
+      "pattern_match" : {
+        "$record.Agent.ExternalAddress.InternationalAddress.IntAddressLine[1]" : "^[\\u0000-\\u005F\\u0061-\\u007B\\u007d-\\u007f£€]*$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q002_7",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please use letters (a-z), numbers and common punctuation symbols only for the address and postcode",
+        "fields" : [ "Q002_7" ]
+      },
+      "pattern_match" : {
+        "$record.Agent.ExternalAddress.InternationalAddress.IntAddressLine[2]" : "^[\\u0000-\\u005F\\u0061-\\u007B\\u007d-\\u007f£€]*$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q002_8",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please use letters (a-z), numbers and common punctuation symbols only for the address and postcode",
+        "fields" : [ "Q002_8" ]
+      },
+      "pattern_match" : {
+        "$record.Agent.ExternalAddress.InternationalAddress.IntAddressLine[3]" : "^[\\u0000-\\u005F\\u0061-\\u007B\\u007d-\\u007f£€]*$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q002_9",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please use letters (a-z), numbers and common punctuation symbols only for the address and postcode",
+        "fields" : [ "Q002_9" ]
+      },
+      "pattern_match" : {
+        "$record.Agent.ExternalAddress.InternationalAddress.IntAddressLine[4]" : "^[\\u0000-\\u005F\\u0061-\\u007B\\u007d-\\u007f£€]*$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q002_10",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please use letters (a-z), numbers and common punctuation symbols only for the address and postcode",
+        "fields" : [ "Q002_10" ]
+      },
+      "pattern_match" : {
+        "$record.Agent.ExternalAddress.InternationalAddress.Country" : "^[\\u0000-\\u005F\\u0061-\\u007B\\u007d-\\u007f£€]*$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q002_11",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please use letters (a-z), numbers and common punctuation symbols only for the address and postcode",
+        "fields" : [ "Q002_11" ]
+      },
+      "pattern_match" : {
+        "$record.Agent.ExternalAddress.InternationalAddress.InternationalPostCode" : "^[\\u0000-\\u005F\\u0061-\\u007B\\u007d-\\u007f£€]*$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q002_12",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "The telephone country code number should have a maximum of 3 numbers",
+        "fields" : [ "Q002_12" ]
+      },
+      "pattern_match" : {
+        "$record.Agent.ContactDetails.Telephone[0].TelCountryCode" : "^[0-9]{1,3}$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q002_13",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "The telephone national number should have a maximum of 20 numbers",
+        "fields" : [ "Q002_13" ]
+      },
+      "pattern_match" : {
+        "$record.Agent.ContactDetails.Telephone[0].TelNationalNumber" : "^[0-9 \\-]{1,20}$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q002_14",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "The telephone extension number should have a maximum of 6 numbers",
+        "fields" : [ "Q002_14" ]
+      },
+      "pattern_match" : {
+        "$record.Agent.ContactDetails.Telephone[0].TelExtensionNumber" : "^[0-9]{1,6}$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q002_15",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "The mobile country code number should have a maximum of 3 numbers",
+        "fields" : [ "Q002_15" ]
+      },
+      "pattern_match" : {
+        "$record.Agent.ContactDetails.Telephone[1].TelCountryCode" : "^[0-9]{1,3}$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q002_16",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "The mobile national number should have a maximum of 20 numbers",
+        "fields" : [ "Q002_16" ]
+      },
+      "pattern_match" : {
+        "$record.Agent.ContactDetails.Telephone[1].TelNationalNumber" : "^[0-9 \\-]{1,20}$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q002_17",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "The mobile extension number should have a maximum of 6 numbers",
+        "fields" : [ "Q002_17" ]
+      },
+      "pattern_match" : {
+        "$record.Agent.ContactDetails.Telephone[1].TelExtensionNumber" : "^[0-9]{1,6}$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q002_18",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "The fax country number should have a maximum of 3 numbers",
+        "fields" : [ "Q002_18" ]
+      },
+      "pattern_match" : {
+        "$record.Agent.ContactDetails.Fax[*].FaxCountryCode" : "^[0-9]{1,3}$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q002_19",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "The fax national number should have a maximum of 20 numbers",
+        "fields" : [ "Q002_19" ]
+      },
+      "pattern_match" : {
+        "$record.Agent.ContactDetails.Fax[*].FaxNationalNumber" : "^[0-9 \\-]{1,20}$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q002_20",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "The fax extension number should have a maximum of 6 numbers",
+        "fields" : [ "Q002_20" ]
+      },
+      "pattern_match" : {
+        "$record.Agent.ContactDetails.Fax[*].FaxExtensionNumber" : "^[0-9]{1,6}$"
+      }
+    } ]
+  },
+  "Q001" : {
+    "title" : "Applicant Details",
+    "id" : "Q001",
+    "page" : "2",
+    "rules" : [ {
+      "name" : "MustHaveIfRule",
+      "field" : "Q001_3",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide the Applicant's name or Company",
+        "fields" : [ "Q001_3" ]
+      },
+      "conditional_rule" : {
+        "$record.Applicant.PersonName.PersonFamilyName" : "(eq)"
+      },
+      "must_haves" : [ "$record.Applicant.OrgName" ]
+    }, {
+      "name" : "OrRule",
+      "field" : "Q001_6",
+      "rules" : [ {
+        "name" : "MustHaveRuleExtended",
+        "field" : "Q001_10",
+        "rules" : [ ],
+        "fileName" : "s10rules_england_en.xml",
+        "error" : {
+          "text" : "Please provide the Applicant's Address",
+          "fields" : [ "Q001_6" ]
+        },
+        "must_haves" : [ "$record.Applicant.ExternalAddress.InternationalAddress.IntAddressLine[4]" ]
+      } ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide the Applicant's Address",
+        "fields" : [ "Q001_6" ]
+      }
+    }, {
+      "name" : "MustHaveRule",
+      "field" : "Q001_23",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : " Please state whether you are an Agent or not",
+        "fields" : [ "Q001_23" ]
+      },
+      "must_haves" : [ "$record.IndicatorEmpty.IsAgent" ]
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q001_2",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please use letters (a-z), numbers and common punctuation symbols only for the first name",
+        "fields" : [ "Q001_2" ]
+      },
+      "pattern_match" : {
+        "$record.Applicant.PersonName.PersonGivenName" : "^[\\u0000-\\u005F\\u0061-\\u007B\\u007d-\\u007f£€]*$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q001_3",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please use letters (a-z), numbers and common punctuation symbols only for the surname",
+        "fields" : [ "Q001_3" ]
+      },
+      "pattern_match" : {
+        "$record.Applicant.PersonName.PersonFamilyName" : "^[\\u0000-\\u005F\\u0061-\\u007B\\u007d-\\u007f£€]*$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q001_4",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please use letters (a-z), numbers and common punctuation symbols only for the organisation name",
+        "fields" : [ "Q001_4" ]
+      },
+      "pattern_match" : {
+        "$record.Applicant.OrgName" : "^[\\u0000-\\u005F\\u0061-\\u007B\\u007d-\\u007f£€]*$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q001_6",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please use letters (a-z), numbers and common punctuation symbols only for the address and postcode",
+        "fields" : [ "Q001_6" ]
+      },
+      "pattern_match" : {
+        "$record.Applicant.ExternalAddress.InternationalAddress.IntAddressLine[0]" : "^[\\u0000-\\u005F\\u0061-\\u007B\\u007d-\\u007f£€]*$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q001_7",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please use letters (a-z), numbers and common punctuation symbols only for the address and postcode",
+        "fields" : [ "Q001_7" ]
+      },
+      "pattern_match" : {
+        "$record.Applicant.ExternalAddress.InternationalAddress.IntAddressLine[1]" : "^[\\u0000-\\u005F\\u0061-\\u007B\\u007d-\\u007f£€]*$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q001_8",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please use letters (a-z), numbers and common punctuation symbols only for the address and postcode",
+        "fields" : [ "Q001_7" ]
+      },
+      "pattern_match" : {
+        "$record.Applicant.ExternalAddress.InternationalAddress.IntAddressLine[2]" : "^[\\u0000-\\u005F\\u0061-\\u007B\\u007d-\\u007f£€]*$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q001_9",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please use letters (a-z), numbers and common punctuation symbols only for the address and postcode",
+        "fields" : [ "Q001_7" ]
+      },
+      "pattern_match" : {
+        "$record.Applicant.ExternalAddress.InternationalAddress.IntAddressLine[3]" : "^[\\u0000-\\u005F\\u0061-\\u007B\\u007d-\\u007f£€]*$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q001_10",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please use letters (a-z), numbers and common punctuation symbols only for the address and postcode",
+        "fields" : [ "Q001_7" ]
+      },
+      "pattern_match" : {
+        "$record.Applicant.ExternalAddress.InternationalAddress.IntAddressLine[4]" : "^[\\u0000-\\u005F\\u0061-\\u007B\\u007d-\\u007f£€]*$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q001_11",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please use letters (a-z), numbers and common punctuation symbols only for the address and postcode",
+        "fields" : [ "Q001_11" ]
+      },
+      "pattern_match" : {
+        "$record.Applicant.ExternalAddress.InternationalAddress.Country" : "^[\\u0000-\\u005F\\u0061-\\u007B\\u007d-\\u007f£€]*$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q001_12",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please use letters (a-z), numbers and common punctuation symbols only for the address and postcode",
+        "fields" : [ "Q001_12" ]
+      },
+      "pattern_match" : {
+        "$record.Applicant.ExternalAddress.InternationalAddress.InternationalPostCode" : "^[\\u0000-\\u005F\\u0061-\\u007B\\u007d-\\u007f£€]*$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q002_12",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "The telephone country code number should have a maximum of 3 numbers",
+        "fields" : [ "Q002_12" ]
+      },
+      "pattern_match" : {
+        "$record.Applicant.ContactDetails.Telephone[0].TelCountryCode" : "^[0-9]{1,3}$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q002_13",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "The telephone national number should have a maximum of 20 numbers",
+        "fields" : [ "Q002_13" ]
+      },
+      "pattern_match" : {
+        "$record.Applicant.ContactDetails.Telephone[0].TelNationalNumber" : "^[0-9 \\-]{1,20}$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q002_14",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "The telephone extension number should have a maximum of 6 numbers",
+        "fields" : [ "Q002_14" ]
+      },
+      "pattern_match" : {
+        "$record.Applicant.ContactDetails.Telephone[0].TelExtensionNumber" : "^[0-9]{1,6}$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q002_15",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "The mobile country code number should have a maximum of 3 numbers",
+        "fields" : [ "Q002_15" ]
+      },
+      "pattern_match" : {
+        "$record.Applicant.ContactDetails.Telephone[1].TelCountryCode" : "^[0-9]{1,3}$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q002_16",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "The mobile national number should have a maximum of 20 numbers",
+        "fields" : [ "Q002_16" ]
+      },
+      "pattern_match" : {
+        "$record.Applicant.ContactDetails.Telephone[1].TelNationalNumber" : "^[0-9 \\-]{1,20}$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q002_17",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "The mobile extension number should have a maximum of 6 numbers",
+        "fields" : [ "Q002_17" ]
+      },
+      "pattern_match" : {
+        "$record.Applicant.ContactDetails.Telephone[1].TelExtensionNumber" : "^[0-9]{1,6}$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q002_18",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "The fax country number should have a maximum of 3 numbers",
+        "fields" : [ "Q002_18" ]
+      },
+      "pattern_match" : {
+        "$record.Applicant.ContactDetails.Fax[0].FaxCountryCode" : "^[0-9]{1,3}$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q002_19",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "The fax national number should have a maximum of 20 numbers",
+        "fields" : [ "Q002_19" ]
+      },
+      "pattern_match" : {
+        "$record.Applicant.ContactDetails.Fax[0].FaxNationalNumber" : "^[0-9 \\-]{1,20}$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q002_20",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "The fax extension number should have a maximum of 6 numbers",
+        "fields" : [ "Q002_20" ]
+      },
+      "pattern_match" : {
+        "$record.Applicant.ContactDetails.Fax[0].FaxExtensionNumber" : "^[0-9]{1,6}$"
+      }
+    } ]
+  },
+  "Q045" : {
+    "title" : "Declaration",
+    "id" : "Q045",
+    "page" : "13",
+    "rules" : [ {
+      "name" : "MustHaveRule",
+      "field" : "Q045_5",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please enter the date of the proposal declaration",
+        "fields" : [ "Q045_5" ]
+      },
+      "must_haves" : [ "$record.Declaration.DeclarationDate" ]
+    }, {
+      "name" : "DateRule",
+      "field" : "Q045_5",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide a valid date in the format of DD/MM/YYYY; e.g. 22/12/2008. (Please note that the year needs to be 4 digits long)",
+        "fields" : [ "Q045_5" ]
+      },
+      "date" : "$record.Declaration.DeclarationDate",
+      "range" : "Any"
+    }, {
+      "name" : "MustHaveIfRule",
+      "field" : "Q045_1",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please complete the check box.",
+        "fields" : [ "Q045_1" ]
+      },
+      "conditional_rule" : {
+        "$record.Declaration.DeclarationMade" : "(eq)0"
+      },
+      "must_haves" : [ "$record.ForceAnErrorMessageIfValueIs0" ]
+    } ]
+  },
+  "Q037" : {
+    "title" : "Neighbourly/Community Consultation",
+    "id" : "Q037",
+    "page" : "4",
+    "rules" : [ {
+      "name" : "MustHaveRule",
+      "field" : "Q037_1",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Have you consulted your neighbours or the local community about your proposal?",
+        "fields" : [ "Q037_1" ]
+      },
+      "must_haves" : [ "$record.ApplicationData.Consultation.HaveConsulted" ]
+    }, {
+      "name" : "MustHaveIfRule",
+      "field" : "Q037_2",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "If Yes, please provide details.",
+        "fields" : [ "Q037_2" ]
+      },
+      "conditional_rule" : {
+        "$record.ApplicationData.Consultation.HaveConsulted" : "(eq)1"
+      },
+      "must_haves" : [ "$record.ApplicationData.Consultation.ConsultationDetails" ]
+    } ]
+  },
+  "Q003" : {
+    "title" : "Site Location",
+    "id" : "Q003",
+    "page" : "1",
+    "rules" : [ {
+      "name" : "OrRule",
+      "field" : "Q003_8",
+      "rules" : [ {
+        "name" : "MustHaveRule",
+        "field" : "Q003_8",
+        "rules" : [ ],
+        "fileName" : "s10rules_england_en.xml",
+        "error" : {
+          "text" : "Please provide Site Location either as an address with a valid postcode or as a full grid reference",
+          "fields" : [ "Q003_8" ]
+        },
+        "must_haves" : [ "$record.SiteLocation.SiteGridRefence.X", "$record.SiteLocation.SiteGridRefence.Y" ]
+      } ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide Site Location either as an address with a valid postcode or as a full grid reference",
+        "fields" : [ "Q003_8" ]
+      }
+    }, {
+      "name" : "OrRule",
+      "field" : "Q003_11",
+      "rules" : [ {
+        "name" : "MustHaveRule",
+        "field" : "Q003_11",
+        "rules" : [ ],
+        "fileName" : "s10rules_england_en.xml",
+        "error" : {
+          "text" : "Please provide the description of the site location or the site address with a postcode.",
+          "fields" : [ "Q003_11" ]
+        },
+        "must_haves" : [ "$record.SiteLocation.OtherLocation" ]
+      } ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide the description of the site location or the site address with a postcode.",
+        "fields" : [ "Q003_11" ]
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q003_3",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please use letters (a-z), numbers and common punctuation symbols only for the house name",
+        "fields" : [ "Q003_3" ]
+      },
+      "pattern_match" : {
+        "$record.SiteLocation.BS7666Address.PAON.Description" : "^[\\u0000-\\u0019\\u0021\\u0025-\\u005A\\u0061-\\u007A\\u007F\\s']*$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q003_1",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "The house number should have a maximum of 4 numbers",
+        "fields" : [ "Q003_1" ]
+      },
+      "pattern_match" : {
+        "$record.SiteLocation.BS7666Address.PAON.StartRange.Number" : "^[0-9]{0,4}$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Q003_2",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide the house number suffix using letters only",
+        "fields" : [ "Q003_2" ]
+      },
+      "pattern_match" : {
+        "$record.SiteLocation.BS7666Address.PAON.StartRange.Suffix" : "^[A-Z]{0,1}$"
+      }
+    } ]
+  },
+  "Q140" : {
+    "title" : "Certificates",
+    "id" : "Q140",
+    "page" : "12",
+    "rules" : [ {
+      "name" : "MustHaveRule",
+      "field" : "CertificateSelected",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please select the appropriate Certificate",
+        "fields" : [ "CertificateSelected" ]
+      },
+      "must_haves" : [ "$record.ApplicationData.OwnershipCertificates.CertificateSelected" ]
+    }, {
+      "name" : "MustHaveRule",
+      "field" : "PersonNameTitle",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide your name title details",
+        "fields" : [ "PersonNameTitle" ]
+      },
+      "must_haves" : [ "$record.ApplicationData.OwnershipCertificates.OwnershipDeclaration.Signatory.PersonNameTitle" ]
+    }, {
+      "name" : "MustHaveRule",
+      "field" : "PersonGivenName",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide your first name details",
+        "fields" : [ "PersonGivenName" ]
+      },
+      "must_haves" : [ "$record.ApplicationData.OwnershipCertificates.OwnershipDeclaration.Signatory.PersonGivenName" ]
+    }, {
+      "name" : "MustHaveRule",
+      "field" : "PersonFamilyName",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide your family name details",
+        "fields" : [ "PersonFamilyName" ]
+      },
+      "must_haves" : [ "$record.ApplicationData.OwnershipCertificates.OwnershipDeclaration.Signatory.PersonFamilyName" ]
+    }, {
+      "name" : "MustHaveRule",
+      "field" : "DeclarationDate",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide the Certificate declaration date",
+        "fields" : [ "DeclarationDate" ]
+      },
+      "must_haves" : [ "$record.ApplicationData.OwnershipCertificates.OwnershipDeclaration.DeclarationDate" ]
+    }, {
+      "name" : "DateRule",
+      "field" : "DeclarationDate",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide a valid date in the format of DD/MM/YYYY; e.g. 22/12/2008. (Please note that the year needs to be 4 digits long)",
+        "fields" : [ "DeclarationDate" ]
+      },
+      "date" : "$record.ApplicationData.OwnershipCertificates.OwnershipDeclaration.DeclarationDate",
+      "range" : "Any"
+    }, {
+      "name" : "DateRuleRep",
+      "field" : "NoticeGivenDate",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide a valid date in the format of DD/MM/YYYY; e.g. 22/12/2008. (Please note that the year needs to be 4 digits long)",
+        "fields" : [ "NoticeGivenDate" ]
+      },
+      "date" : "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[*].NoticeGivenDate",
+      "range" : "Any"
+    }, {
+      "name" : "MustHaveIfRule",
+      "field" : "DeclarationMade",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please Accept the Certificate declaration",
+        "fields" : [ "DeclarationMade" ]
+      },
+      "conditional_rule" : {
+        "$record.ApplicationData.OwnershipCertificates.OwnershipDeclaration.DeclarationMade" : "(eq)0"
+      },
+      "must_haves" : [ "$record.ForceAnErrorMessageIfValueIs0" ]
+    }, {
+      "name" : "MustHaveIfRuleRep",
+      "field" : "PersonRequestedName",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide the owners name",
+        "fields" : [ "PersonRequestedName" ]
+      },
+      "conditional_rule" : { },
+      "startPos" : "1",
+      "endPos" : "1",
+      "allSubForms" : "true",
+      "must_haves" : [ "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[*].NoticeRecipient.NoticeRecipientPerson.PersonRequestedName" ]
+    }, {
+      "name" : "MustHaveIfRuleRep",
+      "field" : "PersonRequestedName",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide the owners name",
+        "fields" : [ "PersonRequestedName" ]
+      },
+      "conditional_rule" : { },
+      "startPos" : "6",
+      "endPos" : "6",
+      "allSubForms" : "true",
+      "must_haves" : [ "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[*].NoticeRecipient.NoticeRecipientPerson.PersonRequestedName" ]
+    }, {
+      "name" : "MustHaveOneOfIfRuleRep",
+      "field" : "NoticeRecipientAddress",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide the owners address",
+        "fields" : [ "NoticeRecipientAddress" ]
+      },
+      "conditional_rule" : { },
+      "startPos" : "1",
+      "endPos" : "1",
+      "allSubForms" : "true",
+      "must_haves" : [ "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[*].NoticeRecipient.NoticeRecipientAddress.PAON.StartRange.Number", "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[*].NoticeRecipient.NoticeRecipientAddress.PAON.StartRange.Suffix", "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[*].NoticeRecipient.NoticeRecipientAddress.StreetDescription", "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[*].NoticeRecipient.NoticeRecipientAddress.Locality", "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[*].NoticeRecipient.NoticeRecipientAddress.PostTown", "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[*].NoticeRecipient.NoticeRecipientAddress.PostCode" ]
+    }, {
+      "name" : "MustHaveOneOfIfRuleRep",
+      "field" : "NoticeRecipientAddress",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide the owners address",
+        "fields" : [ "NoticeRecipientAddress" ]
+      },
+      "conditional_rule" : { },
+      "startPos" : "6",
+      "endPos" : "6",
+      "allSubForms" : "true",
+      "must_haves" : [ "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[*].NoticeRecipient.NoticeRecipientAddress.PAON.StartRange.Number", "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[*].NoticeRecipient.NoticeRecipientAddress.PAON.StartRange.Suffix", "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[*].NoticeRecipient.NoticeRecipientAddress.StreetDescription", "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[*].NoticeRecipient.NoticeRecipientAddress.Locality", "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[*].NoticeRecipient.NoticeRecipientAddress.PostTown", "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[*].NoticeRecipient.NoticeRecipientAddress.PostCode" ]
+    }, {
+      "name" : "MustHaveIfRuleRep",
+      "field" : "NoticeGivenDate",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide the date notice served",
+        "fields" : [ "NoticeGivenDate" ]
+      },
+      "conditional_rule" : { },
+      "startPos" : "1",
+      "endPos" : "1",
+      "allSubForms" : "true",
+      "must_haves" : [ "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[*].NoticeGivenDate" ]
+    }, {
+      "name" : "MustHaveIfRuleRep",
+      "field" : "NoticeGivenDate",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide the date notice served",
+        "fields" : [ "NoticeGivenDate" ]
+      },
+      "conditional_rule" : { },
+      "startPos" : "6",
+      "endPos" : "6",
+      "allSubForms" : "true",
+      "must_haves" : [ "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[*].NoticeGivenDate" ]
+    }, {
+      "name" : "MustHaveIfRule",
+      "field" : "AdvertDate",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide a valid newspaper advert date in the format of DD/MM/YYYY; e.g. 22/12/2008. (Please note that the year needs to be 4 digits long)",
+        "fields" : [ "AdvertDate" ]
+      },
+      "conditional_rule" : {
+        "$record.ApplicationData.OwnershipCertificates.CertificateSelected" : "(eq)CertificateC"
+      },
+      "must_haves" : [ "$record.ApplicationData.OwnershipCertificates.Advertisement.AdvertDate" ]
+    }, {
+      "name" : "MustHaveIfRule",
+      "field" : "StepsTaken",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide details of the steps taken to find out the names and addresses of the other owners",
+        "fields" : [ "StepsTaken" ]
+      },
+      "conditional_rule" : {
+        "$record.ApplicationData.OwnershipCertificates.CertificateSelected" : "(eq)CertificateC"
+      },
+      "must_haves" : [ "$record.ApplicationData.OwnershipCertificates.NotificationStepsTaken" ]
+    }, {
+      "name" : "MustHaveIfRule",
+      "field" : "AdvertDate",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide a valid newspaper advert date in the format of DD/MM/YYYY; e.g. 22/12/2008. (Please note that the year needs to be 4 digits long)",
+        "fields" : [ "AdvertDate" ]
+      },
+      "conditional_rule" : {
+        "$record.ApplicationData.OwnershipCertificates.CertificateSelected" : "(eq)CertificateD"
+      },
+      "must_haves" : [ "$record.ApplicationData.OwnershipCertificates.Advertisement.AdvertDate" ]
+    }, {
+      "name" : "MustHaveIfRule",
+      "field" : "StepsTaken",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide details of the steps taken to find out the names and addresses of the other owners",
+        "fields" : [ "StepsTaken" ]
+      },
+      "conditional_rule" : {
+        "$record.ApplicationData.OwnershipCertificates.CertificateSelected" : "(eq)CertificateD"
+      },
+      "must_haves" : [ "$record.ApplicationData.OwnershipCertificates.NotificationStepsTaken" ]
+    }, {
+      "name" : "DateRule",
+      "field" : "AdvertDate",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide a valid date in the format of DD/MM/YYYY; e.g. 22/12/2008. (Please note that the year needs to be 4 digits long)",
+        "fields" : [ "AdvertDate" ]
+      },
+      "date" : "$record.ApplicationData.OwnershipCertificates.Advertisement.AdvertDate",
+      "range" : "Any"
+    }, {
+      "name" : "RegExRule",
+      "field" : "HouseName",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please use letters (a-z), numbers and common punctuation symbols only for the house name",
+        "fields" : [ "HouseName" ]
+      },
+      "pattern_match" : {
+        "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[*].NoticeRecipient.NoticeRecipientAddress.PAON.Description" : "(^$)|(^[ %&()*+,'./0-9:;<>?=@A-Za-z-]*$)"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Number",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "The house number should have a maximum of 4 numbers",
+        "fields" : [ "Number" ]
+      },
+      "pattern_match" : {
+        "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[*].NoticeRecipient.NoticeRecipientAddress.PAON.StartRange.Number" : "(^$)|(^[0-9]{1,4}$)"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "Suffix",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide the house number suffix using letters only",
+        "fields" : [ "Suffix" ]
+      },
+      "pattern_match" : {
+        "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[*].NoticeRecipient.NoticeRecipientAddress.PAON.StartRange.Suffix" : "(^$)|(^[A-Z]*$)"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "PersonGivenName",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please use letters (a-z), numbers and common punctuation symbols only for the first name",
+        "fields" : [ "PersonGivenName" ]
+      },
+      "pattern_match" : {
+        "$record.ApplicationData.OwnershipCertificates.OwnershipDeclaration.Signatory.PersonGivenName" : "^[\\u0000-\\u005F\\u0061-\\u007B\\u007d-\\u007f£€]*$"
+      }
+    }, {
+      "name" : "RegExRule",
+      "field" : "PersonFamilyName",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please use letters (a-z), numbers and common punctuation symbols only for the surname",
+        "fields" : [ "PersonFamilyName" ]
+      },
+      "pattern_match" : {
+        "$record.ApplicationData.OwnershipCertificates.OwnershipDeclaration.Signatory.PersonFamilyName" : "^[\\u0000-\\u005F\\u0061-\\u007B\\u007d-\\u007f£€]*$"
+      }
+    }, {
+      "name" : "MustHaveIfRuleRep",
+      "field" : "StreetDescription",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide a street address for all notice recipients listed",
+        "fields" : [ "StreetDescription" ]
+      },
+      "conditional_rule" : { },
+      "startPos" : "1",
+      "endPos" : "1",
+      "allSubForms" : "true",
+      "must_haves" : [ "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[*].NoticeRecipient.NoticeRecipientAddress.StreetDescription" ]
+    }, {
+      "name" : "MustHaveIfRuleRep",
+      "field" : "StreetDescription",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide a street address for all notice recipients listed",
+        "fields" : [ "StreetDescription" ]
+      },
+      "conditional_rule" : { },
+      "startPos" : "6",
+      "endPos" : "6",
+      "allSubForms" : "true",
+      "must_haves" : [ "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[*].NoticeRecipient.NoticeRecipientAddress.StreetDescription" ]
+    }, {
+      "name" : "MustHaveOrRule",
+      "field" : "StreetDescription",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide a street address for all notice recipients listed",
+        "fields" : [ "StreetDescription" ]
+      },
+      "firstOperand" : "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[0].NoticeRecipient.NoticeRecipientPerson.PersonRequestedName",
+      "secondOperand" : "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[0].NoticeGivenDate",
+      "must_haves" : [ "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[0].NoticeRecipient.NoticeRecipientAddress.StreetDescription" ]
+    }, {
+      "name" : "MustHaveOrRule",
+      "field" : "StreetDescription",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide a street address for all notice recipients listed",
+        "fields" : [ "StreetDescription" ]
+      },
+      "firstOperand" : "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[1].NoticeRecipient.NoticeRecipientPerson.PersonRequestedName",
+      "secondOperand" : "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[1].NoticeGivenDate",
+      "must_haves" : [ "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[1].NoticeRecipient.NoticeRecipientAddress.StreetDescription" ]
+    }, {
+      "name" : "MustHaveOrRule",
+      "field" : "StreetDescription",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide a street address for all notice recipients listed",
+        "fields" : [ "StreetDescription" ]
+      },
+      "firstOperand" : "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[2].NoticeRecipient.NoticeRecipientPerson.PersonRequestedName",
+      "secondOperand" : "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[2].NoticeGivenDate",
+      "must_haves" : [ "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[2].NoticeRecipient.NoticeRecipientAddress.StreetDescription" ]
+    }, {
+      "name" : "MustHaveOrRule",
+      "field" : "StreetDescription",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide a street address for all notice recipients listed",
+        "fields" : [ "StreetDescription" ]
+      },
+      "firstOperand" : "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[3].NoticeRecipient.NoticeRecipientPerson.PersonRequestedName",
+      "secondOperand" : "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[3].NoticeGivenDate",
+      "must_haves" : [ "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[3].NoticeRecipient.NoticeRecipientAddress.StreetDescription" ]
+    }, {
+      "name" : "MustHaveOrRule",
+      "field" : "StreetDescription",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide a street address for all notice recipients listed",
+        "fields" : [ "StreetDescription" ]
+      },
+      "firstOperand" : "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[4].NoticeRecipient.NoticeRecipientPerson.PersonRequestedName",
+      "secondOperand" : "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[4].NoticeGivenDate",
+      "must_haves" : [ "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[4].NoticeRecipient.NoticeRecipientAddress.StreetDescription" ]
+    }, {
+      "name" : "MustHaveOrRule",
+      "field" : "StreetDescription",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide a street address for all notice recipients listed",
+        "fields" : [ "StreetDescription" ]
+      },
+      "firstOperand" : "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[5].NoticeRecipient.NoticeRecipientPerson.PersonRequestedName",
+      "secondOperand" : "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[5].NoticeGivenDate",
+      "must_haves" : [ "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[5].NoticeRecipient.NoticeRecipientAddress.StreetDescription" ]
+    }, {
+      "name" : "MustHaveOrRule",
+      "field" : "StreetDescription",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide a street address for all notice recipients listed",
+        "fields" : [ "StreetDescription" ]
+      },
+      "firstOperand" : "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[6].NoticeRecipient.NoticeRecipientPerson.PersonRequestedName",
+      "secondOperand" : "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[6].NoticeGivenDate",
+      "must_haves" : [ "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[6].NoticeRecipient.NoticeRecipientAddress.StreetDescription" ]
+    }, {
+      "name" : "MustHaveOrRule",
+      "field" : "StreetDescription",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide a street address for all notice recipients listed",
+        "fields" : [ "StreetDescription" ]
+      },
+      "firstOperand" : "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[7].NoticeRecipient.NoticeRecipientPerson.PersonRequestedName",
+      "secondOperand" : "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[7].NoticeGivenDate",
+      "must_haves" : [ "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[7].NoticeRecipient.NoticeRecipientAddress.StreetDescription" ]
+    }, {
+      "name" : "MustHaveOrRule",
+      "field" : "StreetDescription",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide a street address for all notice recipients listed",
+        "fields" : [ "StreetDescription" ]
+      },
+      "firstOperand" : "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[8].NoticeRecipient.NoticeRecipientPerson.PersonRequestedName",
+      "secondOperand" : "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[8].NoticeGivenDate",
+      "must_haves" : [ "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[8].NoticeRecipient.NoticeRecipientAddress.StreetDescription" ]
+    }, {
+      "name" : "MustHaveOrRule",
+      "field" : "StreetDescription",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide a street address for all notice recipients listed",
+        "fields" : [ "StreetDescription" ]
+      },
+      "firstOperand" : "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[9].NoticeRecipient.NoticeRecipientPerson.PersonRequestedName",
+      "secondOperand" : "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[9].NoticeGivenDate",
+      "must_haves" : [ "$record.ApplicationData.OwnershipCertificates.NoticeGiven.NoticeGivenTo[9].NoticeRecipient.NoticeRecipientAddress.StreetDescription" ]
+    }, {
+      "name" : "MustHaveRule",
+      "field" : "firsttime",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "The form has changed since your last visit, please re-enter your certificate of ownership selection",
+        "fields" : [ "firsttime" ]
+      },
+      "must_haves" : [ "$record.IndicatorEmpty.Q140_A_firsttime" ]
+    } ]
+  },
+  "Q011" : {
+    "title" : "Description",
+    "id" : "Q011",
+    "page" : "4",
+    "rules" : [ {
+      "name" : "MustHaveRule",
+      "field" : "Q011_1",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please describe the proposed works.",
+        "fields" : [ "Q011_1" ]
+      },
+      "must_haves" : [ "$record.ApplicationData.ProposalDescription.DescriptionText" ]
+    }, {
+      "name" : "MustHaveRule",
+      "field" : "Q011_2",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Has the building, works or change of use already been started?",
+        "fields" : [ "Q011_2" ]
+      },
+      "must_haves" : [ "$record.ApplicationData.ProposalDescription.ProposalState.ProposalStarted" ]
+    }, {
+      "name" : "MustHaveIfRule",
+      "field" : "Q011_6",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "If Yes, please state the date when the work was started.",
+        "fields" : [ "Q011_6" ]
+      },
+      "conditional_rule" : {
+        "$record.ApplicationData.ProposalDescription.ProposalState.ProposalStarted" : "(eq)1"
+      },
+      "must_haves" : [ "$record.ApplicationData.ProposalDescription.ProposalState.StartDate" ]
+    }, {
+      "name" : "DateRule",
+      "field" : "Q011_6",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide a valid date in the format of DD/MM/YYYY; e.g. 22/12/2008. (Please note that the year needs to be 4 digits long)",
+        "fields" : [ "Q011_6" ]
+      },
+      "date" : "$record.ApplicationData.ProposalDescription.ProposalState.StartDate",
+      "range" : "Any"
+    }, {
+      "name" : "MustHaveRule",
+      "field" : "Q011_7",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Has the work been completed?",
+        "fields" : [ "Q011_7" ]
+      },
+      "must_haves" : [ "$record.ApplicationData.ProposalDescription.ProposalState.ProposalCompleted" ]
+    }, {
+      "name" : "DateRule",
+      "field" : "Q011_8",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please provide a valid date in the format of DD/MM/YYYY; e.g. 22/12/2008. (Please note that the year needs to be 4 digits long)",
+        "fields" : [ "Q011_8" ]
+      },
+      "date" : "$record.ApplicationData.ProposalDescription.ProposalState.EndDate",
+      "range" : "Any"
+    }, {
+      "name" : "MustHaveIfRule",
+      "field" : "Q011_8",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "If Yes, please state the date when the work was completed.",
+        "fields" : [ "Q010_8" ]
+      },
+      "conditional_rule" : {
+        "$record.ApplicationData.ProposalDescription.ProposalState.ProposalCompleted" : "(eq)1"
+      },
+      "must_haves" : [ "$record.ApplicationData.ProposalDescription.ProposalState.EndDate" ]
+    } ]
+  },
+  "Q054" : {
+    "title" : "Related Proposals to Listed Building",
+    "id" : "Q054",
+    "page" : "4",
+    "rules" : [ {
+      "name" : "MustHaveRule",
+      "field" : "Q054_1",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Are there any current applications or previous decisions for this site?",
+        "fields" : [ "Q054_1" ]
+      },
+      "must_haves" : [ "$record.ApplicationData.ListedBuilding.ListedRelatedApplications.CurrentPreviousApplications" ]
+    }, {
+      "name" : "MustHaveIfRule",
+      "field" : "Q054_2",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please describe and include the planning application reference number",
+        "fields" : [ "Q054_2" ]
+      },
+      "conditional_rule" : {
+        "$record.ApplicationData.ListedBuilding.ListedRelatedApplications.CurrentPreviousApplications" : "(eq)1"
+      },
+      "must_haves" : [ "$record.ApplicationData.ListedBuilding.ListedRelatedApplications.CurrentPreviousApplicationsDetails.FormattedRefNo" ]
+    } ]
+  },
+  "Q150" : {
+    "title" : "Employee / Member Interests",
+    "id" : "Q150",
+    "page" : "11",
+    "rules" : [ {
+      "name" : "MustHaveRule",
+      "field" : "Q150_1",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please state whether you have any interests to declare",
+        "fields" : [ "Q150_1" ]
+      },
+      "must_haves" : [ "$record.DeclarationOfInterest.IsRelated" ]
+    }, {
+      "name" : "MustHaveIfRule",
+      "field" : "Q150_2",
+      "rules" : [ ],
+      "fileName" : "s10rules_england_en.xml",
+      "error" : {
+        "text" : "Please give details of the stated interests",
+        "fields" : [ "QQ150_2" ]
+      },
+      "conditional_rule" : {
+        "$record.DeclarationOfInterest.IsRelated" : "(eq)1"
+      },
+      "must_haves" : [ "$record.DeclarationOfInterest.RelationDetails" ]
+    } ]
+  }
+}
