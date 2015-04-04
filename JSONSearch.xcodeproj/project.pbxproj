@@ -16,6 +16,7 @@
 		FC84BDF51ACEE30800E1BB23 /* JSONError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC84BDF41ACEE30800E1BB23 /* JSONError.swift */; };
 		FC84BDF71ACF0AAD00E1BB23 /* s10rules_england_en.json in Resources */ = {isa = PBXBuildFile; fileRef = FC84BDF61ACF0AAD00E1BB23 /* s10rules_england_en.json */; };
 		FC84BDF91ACFE01C00E1BB23 /* TestJSONObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC84BDF81ACFE01C00E1BB23 /* TestJSONObjects.swift */; };
+		FC84BDFB1AD074B000E1BB23 /* TestJSONSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC84BDFA1AD074B000E1BB23 /* TestJSONSearch.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		FC84BDF41ACEE30800E1BB23 /* JSONError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONError.swift; sourceTree = "<group>"; };
 		FC84BDF61ACF0AAD00E1BB23 /* s10rules_england_en.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = s10rules_england_en.json; sourceTree = "<group>"; };
 		FC84BDF81ACFE01C00E1BB23 /* TestJSONObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestJSONObjects.swift; sourceTree = "<group>"; };
+		FC84BDFA1AD074B000E1BB23 /* TestJSONSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestJSONSearch.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 				FC84BDE81ACEBF3F00E1BB23 /* JSONSearchLibTests.swift */,
 				FC84BDF81ACFE01C00E1BB23 /* TestJSONObjects.swift */,
 				FC84BDE61ACEBF3F00E1BB23 /* Supporting Files */,
+				FC84BDFA1AD074B000E1BB23 /* TestJSONSearch.swift */,
 			);
 			path = JSONSearchLibTests;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC84BDFB1AD074B000E1BB23 /* TestJSONSearch.swift in Sources */,
 				FC84BDF91ACFE01C00E1BB23 /* TestJSONObjects.swift in Sources */,
 				FC84BDE91ACEBF3F00E1BB23 /* JSONSearchLibTests.swift in Sources */,
 			);

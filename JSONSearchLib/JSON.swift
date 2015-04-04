@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class JSON
+public class JSON: Searchable
 {
     private weak var _parent: JSON?
     public var parent: JSON? { return _parent }
@@ -101,6 +101,13 @@ public class JSON
     {
         return nil
     }
+
+    public func search(key: String, recursive: Bool = false) -> ResultSet
+    {
+        var ret: ResultSet = ResultSet()
+
+        return ret
+    }
 }
 
 public class JSONArray : JSON
@@ -125,6 +132,21 @@ public class JSONArray : JSON
         }
         return ret
     }
+
+    override public func search(key: String, recursive: Bool = false) -> ResultSet
+    {
+        var ret: ResultSet = ResultSet()
+
+        if recursive
+        {
+            for aValue in self.children
+            {
+                ret.append(aValue.search(key, recursive: true))
+            }
+        }
+
+        return ret
+    }
 }
 
 public class JSONObject : JSON
@@ -143,6 +165,26 @@ public class JSONObject : JSON
     override public subscript(i : String) -> JSON?
     {
             return children[i]
+    }
+
+    override public func search(key: String, recursive: Bool = false) -> ResultSet
+    {
+        var ret: ResultSet = ResultSet()
+
+        if let firstResult = self[key]
+        {
+            ret.append(firstResult)
+        }
+
+        if recursive
+        {
+            for aValue in self.children.values
+            {
+                ret.append(aValue.search(key, recursive: true))
+            }
+        }
+
+        return ret
     }
 
 }
