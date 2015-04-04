@@ -11,6 +11,7 @@ import Foundation
 public protocol Searchable
 {
     func search(key: String, recursive: Bool) -> ResultSet;
+    func search(index: Int) -> ResultSet;
 }
 
 public class ResultSet: Searchable
@@ -35,6 +36,16 @@ public class ResultSet: Searchable
         for anObject in results
         {
             ret.append(anObject.search(key, recursive: recursive))
+        }
+        return ret
+    }
+
+    public func search(index: Int) -> ResultSet
+    {
+        var ret = ResultSet()
+        for anObject in results
+        {
+            ret.append(anObject.search(index))
         }
         return ret
     }

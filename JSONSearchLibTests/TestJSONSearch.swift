@@ -69,6 +69,15 @@ class TestJSONSearch: XCTestCase
     }
 
 
+    func testSimpleIndexSearch()
+    {
+        let theArray = theJSON["Q039"]!["rules"]!
+        let results = theArray.search(1)
+        XCTAssert(results.count == 1, "Failed to get the right number of results")
+    }
+
+
+
     func testPerformanceExample()
     {
         // This is an example of a performance test case.

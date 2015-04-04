@@ -108,6 +108,13 @@ public class JSON: Searchable
 
         return ret
     }
+
+    public func search(index: Int) -> ResultSet
+    {
+        var ret: ResultSet = ResultSet()
+
+        return ret
+    }
 }
 
 public class JSONArray : JSON
@@ -143,6 +150,18 @@ public class JSONArray : JSON
             {
                 ret.append(aValue.search(key, recursive: true))
             }
+        }
+
+        return ret
+    }
+
+    override public func search(index: Int) -> ResultSet
+    {
+        var ret: ResultSet = ResultSet()
+
+        if let theResult = self[index]
+        {
+            ret.append(theResult)
         }
 
         return ret
