@@ -10,6 +10,14 @@ import Foundation
 
 public class JSON
 {
+    private weak var _parent: JSON?
+    public var parent: JSON? { return _parent }
+
+    init(parent: JSON?)
+    {
+        _parent = parent
+    }
+
     public class func load(#fileName: String, inout error: JSONError?) -> JSON?
     {
         var ret: JSON?
@@ -20,7 +28,7 @@ public class JSON
                 = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(),
                                                                  error: &nsError)
             {
-                ret = JSON.from(cocoaObject: jsonObject)
+                ret = JSON.from(cocoaObject: jsonObject, parent: nil)
             }
             else
             {
@@ -46,28 +54,36 @@ public class JSON
         return ret
     }
 
-    class func from(#cocoaObject: AnyObject) -> JSON
+    class func from(#cocoaObject: AnyObject, parent: JSON?) -> JSON
     {
         var ret: JSON
 		if let cocoaObject = cocoaObject as? [AnyObject]
         {
-            ret = JSONArray(cocoaObject)
+            ret = JSONArray(cocoaObject, parent: parent)
         }
         else if let cocoaObject = cocoaObject as? [String : AnyObject]
         {
-            ret = JSONObject(cocoaObject)
+            ret = JSONObject(cocoaObject, parent: parent)
         }
         else if let cocoaObject = cocoaObject as? String
         {
-            ret = JSONString(cocoaObject)
+            ret = JSONString(cocoaObject, parent: parent)
         }
         else if let cocoaObject = cocoaObject as? NSNumber
         {
-            ret = JSONNumber(cocoaObject)
+            println("objCType: \(cocoaObject.objCType)")
+            if cocoaObject.isBool
+            {
+                ret = JSONBool(cocoaObject, parent: parent)
+            }
+            else
+            {
+                ret = JSONNumber(cocoaObject, parent: parent)
+            }
         }
         else if let cocoaObject = cocoaObject as? NSNull
         {
-            ret = JSONNull.null
+            ret = JSONNull(parent: parent)
         }
         else
         {
@@ -91,11 +107,12 @@ public class JSONArray : JSON
 {
     var children: [JSON] = []
 
-    init(_ cocoaObject: [AnyObject])
+    init(_ cocoaObject: [AnyObject], parent: JSON?)
     {
+        super.init(parent: parent)
 		for anObject in cocoaObject
         {
-            children.append(JSON.from(cocoaObject: anObject))
+            children.append(JSON.from(cocoaObject: anObject, parent: self))
         }
     }
 
@@ -114,11 +131,12 @@ public class JSONObject : JSON
 {
     var children : [String : JSON] = [:]
 
-    init(_ cocoaObject: [String : AnyObject])
+    init(_ cocoaObject: [String : AnyObject], parent: JSON?)
     {
+        super.init(parent: parent)
         for aKey in cocoaObject.keys
         {
-            children[aKey] = JSON.from(cocoaObject: cocoaObject[aKey]!)
+            children[aKey] = JSON.from(cocoaObject: cocoaObject[aKey]!, parent: self)
         }
     }
 
@@ -131,32 +149,64 @@ public class JSONObject : JSON
 
 public class JSONNumber : JSON
 {
-    var value : NSNumber
+    private var value : NSNumber
 
-    init(_ cocoaObject: NSNumber)
+    init(_ cocoaObject: NSNumber, parent: JSON?)
     {
         value = cocoaObject
+        super.init(parent: parent)
     }
 
+    public var number: NSNumber { return value }
 }
 
 public class JSONString : JSON
 {
-    var value : String
+    private var value : String
 
-    init(_ cocoaObject: String)
+    init(_ cocoaObject: String, parent: JSON?)
     {
         value = cocoaObject
+        super.init(parent: parent)
     }
+
+    public var string: String { return value }
 }
 
-public class JSONBool : JSON
+public class JSONBool : JSON, BooleanType
 {
+    private var _value : Bool
 
+    init(_ cocoaObject: NSNumber, parent: JSON?)
+    {
+        _value = cocoaObject.boolValue
+        super.init(parent: parent)
+    }
+
+    public var boolValue: Bool { return _value }
 }
 
 
 public class JSONNull : JSON
 {
-	static let null = JSONNull()
+}
+
+private let trueNumber = NSNumber(bool: true)
+private let falseNumber = NSNumber(bool: false)
+private let trueObjCType = String.fromCString(trueNumber.objCType)
+private let falseObjCType = String.fromCString(falseNumber.objCType)
+
+extension NSNumber
+{
+    var isBool: Bool
+     {
+        get
+        {
+            var ret: Bool = false
+            let myCType = String.fromCString(self.objCType)
+
+            return (self.compare(trueNumber) == NSComparisonResult.OrderedSame &&  myCType == trueObjCType)
+               ||  (self.compare(falseNumber) == NSComparisonResult.OrderedSame && myCType == falseObjCType)
+        }
+    }
 }

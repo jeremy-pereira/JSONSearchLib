@@ -78,27 +78,57 @@ class TestJSONSearchObjects: XCTestCase
 
     func testGetParent()
     {
-        XCTAssert(false, "Not implemented yet")
+        let q039 = theJSON["Q039"]
+        let rules = theJSON["Q039"]!["rules"]
+        XCTAssert(rules!.parent === q039!, "Q039 is not the parent of rules")
     }
 
-    func testGetRecursiveDescent()
+    func testGetBool()
     {
-        XCTAssert(false, "Not implemented yet")
+        if let aBool = theJSON["TestStuff"]?["aBool"] as? JSONBool
+        {
+            XCTAssert(aBool, "aBool should be true")
+        }
+        else
+        {
+            XCTFail("Didn't find aBool or it's not a JSONBool")
+        }
+        if let aBool = theJSON["TestStuff"]?["anotherBool"] as? JSONBool
+        {
+            XCTAssert(!aBool, "aBool should be true")
+        }
+        else
+        {
+            XCTFail("Didn't find anotherBool or it's not a JSONBool")
+        }
     }
 
-    func testWildCard()
+    func testGetNumber()
     {
-        XCTAssert(false, "Not implemented yet")
+        if let aNumber = theJSON["TestStuff"]?["aNumber"] as? JSONNumber
+        {
+            XCTAssert(aNumber.number.compare(NSNumber(integer: 10)) == NSComparisonResult.OrderedSame, "Got the wrong number")
+        }
+        else
+        {
+            XCTFail("Didn't find aNumber or it's not a JSONNumber")
+        }
     }
-
-    func testSubscript()
+    func testGetString()
     {
-        XCTAssert(false, "Not implemented yet")
+        if let aString = theJSON["Q017"]?["page"] as? JSONString
+        {
+            XCTAssert(aString.string == "4", "Got the wrong number")
+        }
+        else
+        {
+            XCTFail("Didn't find @017.page or it's not a JSONString")
+        }
     }
 
-    func testUnion()
+    func testGetNull()
     {
-        XCTAssert(false, "Not implemented yet")
+        let aNull = theJSON["TestStuff"]?["null"] as? JSONNull
+        XCTAssert(aNull != nil, "Didn't find the null object")
     }
-
 }
