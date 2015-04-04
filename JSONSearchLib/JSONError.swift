@@ -8,12 +8,13 @@
 
 import Foundation
 
-public class JSONError
+public class JSONError: Printable
 {
     private var _message: String
     private var _nsError: NSError?
 
     public var message: String { return _message }
+    public var nsError: NSError? { return _nsError }
 
     public init(message: String)
     {
@@ -24,5 +25,10 @@ public class JSONError
     {
         self.init(message: nsError.localizedDescription as String)
         _nsError = nsError
+    }
+
+    public var description: String
+    {
+		return message
     }
 }
