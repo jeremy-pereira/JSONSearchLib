@@ -28,7 +28,11 @@ class TestJSONSearchObjects: XCTestCase
             var error: JSONError?
             testFileName = resourcePath
             var someJSON = JSON.load(fileName: testFileName, error: &error)
-            if (someJSON == nil)
+            if let someJSON = someJSON
+            {
+                theJSON = someJSON
+            }
+            else
             {
                 fatalError("Cannot find the test JSON, error: \(error)")
             }
@@ -46,14 +50,30 @@ class TestJSONSearchObjects: XCTestCase
         super.tearDown()
     }
 
-    func testGetRoot()
-    {
-        XCTAssert(false, "Not implemented yet")
-    }
-
     func testGetChild()
     {
-        XCTAssert(false, "Not implemented yet")
+        if let q039 = theJSON["Q039"]
+        {
+			if let rules = q039["rules"]
+            {
+				if let secondRule = rules[1]
+                {
+                    // Hooray
+                }
+                else
+                {
+                    XCTFail("Failed to get rule[1]")
+                }
+            }
+            else
+            {
+                XCTFail("Failed to get rules from Q039")
+            }
+        }
+        else
+        {
+            XCTFail("Failed to get Q039 from the JSON")
+        }
     }
 
     func testGetParent()

@@ -75,6 +75,16 @@ public class JSON
         }
         return ret
     }
+
+    public subscript(i : String) -> JSON?
+    {
+		return nil
+    }
+
+    public subscript(i : Int) -> JSON?
+    {
+        return nil
+    }
 }
 
 public class JSONArray : JSON
@@ -88,6 +98,16 @@ public class JSONArray : JSON
             children.append(JSON.from(cocoaObject: anObject))
         }
     }
+
+    public override subscript(i : Int) -> JSON?
+    {
+        var ret: JSON?
+		if i >= 0 && i < children.count
+        {
+            ret = children[i]
+        }
+        return ret
+    }
 }
 
 public class JSONObject : JSON
@@ -100,6 +120,11 @@ public class JSONObject : JSON
         {
             children[aKey] = JSON.from(cocoaObject: cocoaObject[aKey]!)
         }
+    }
+
+    override public subscript(i : String) -> JSON?
+    {
+            return children[i]
     }
 
 }
