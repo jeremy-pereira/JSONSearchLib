@@ -1456,5 +1456,12 @@
       },
       "must_haves" : [ "$record.DeclarationOfInterest.RelationDetails" ]
     } ]
-  }
+  },
+    "TestStuff" : {
+        "aNumber" : 10,
+        "aBool" : true,
+        "anotherBool" : false,
+        "null" : null
+    }
+
 }

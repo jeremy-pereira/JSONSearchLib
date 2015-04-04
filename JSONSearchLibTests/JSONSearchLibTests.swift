@@ -12,23 +12,23 @@ import JSONSearchLib
 
 class JSONSearchLibTests: XCTestCase
 {
+
+    let resourceName = "s10rules_england_en"
+    let resourceExtension  = "json"
     var testFileName: String = ""
-    var theJSON : JSON!
 
     override func setUp()
     {
         super.setUp()
-
         let theBundle = NSBundle(forClass: JSONSearchLibTests.self)
-        if let resourcePath = theBundle.pathForResource("s10rules_england_en", ofType: "json")
+        if let resourcePath = theBundle.pathForResource(resourceName, ofType: resourceExtension)
         {
+            var error: JSONError?
             testFileName = resourcePath
         }
-        var error: JSONError?
-        var someJSON = JSON.load(fileName: testFileName, error: &error)
-        if (someJSON == nil)
+        else
         {
-            fatalError("Cannot find the test JSON, error: \(error)")
+            fatalError("Cannot resolve resource path for \(resourceName).\(resourceExtension)")
         }
     }
     

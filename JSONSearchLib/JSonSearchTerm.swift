@@ -7,3 +7,13 @@
 //
 
 import Foundation
+
+public class JSONSearch
+{
+
+}
+
+public class JSONSearchTerm
+{
+    
+}
