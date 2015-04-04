@@ -10,7 +10,7 @@ import Cocoa
 import XCTest
 import JSONSearchLib
 
-class TestJSONSearchObjects: XCTestCase
+class TestJSONObjects: XCTestCase
 {
 
     let resourceName = "s10rules_england_en"
