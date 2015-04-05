@@ -89,6 +89,47 @@ class TestJSONSearch: XCTestCase
         XCTAssert(results.count == 6, "Failed to get the right number of results, \(results.count)")
     }
 
+    // MARK: Tests with operators instead of search function
+
+    func testSimpleKeySearchOperator()
+    {
+        let results = theJSON / "Q039"
+        XCTAssert(results.count == 1, "Failed to get the right number of results")
+    }
+
+    func testRecursiveKeySearchOperator()
+    {
+        let results = theJSON ** "error"
+        XCTAssert(results.count == 118, "Failed to get the right number of results, \(results.count)")
+    }
+
+
+    func testChainedKeySearchOperator()
+    {
+        let results = theJSON / "Q054" ** "error"
+        XCTAssert(results.count == 2, "Failed to get the right number of results, \(results.count)")
+    }
+
+
+    func testSimpleIndexSearchOperator()
+    {
+        let theArray = theJSON["Q039"]!["rules"]!
+        let results = theArray / 1
+        XCTAssert(results.count == 1, "Failed to get the right number of results")
+    }
+
+
+    func testObjectWildCardOperator()
+    {
+        let results = theJSON*
+        XCTAssert(results.count == 13, "Failed to get the right number of results, \(results.count)")
+    }
+
+    func testArrayWildCardOperator()
+    {
+        let results = theJSON["Q039"]!["rules"]!*
+        XCTAssert(results.count == 6, "Failed to get the right number of results, \(results.count)")
+    }
 
     func testPerformanceExample()
     {

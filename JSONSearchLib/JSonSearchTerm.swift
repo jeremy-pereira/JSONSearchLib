@@ -75,3 +75,33 @@ public enum WildCard
 {
     case Everything
 }
+
+// Operators
+
+public func / (left: Searchable, right: String) -> ResultSet
+{
+    return left.search(right, recursive: false)
+}
+
+public func / (left: Searchable, right: Int) -> ResultSet
+{
+    return left.search(right)
+}
+
+infix operator **
+{
+	associativity none
+	precedence 150
+}
+
+public func ** (left: Searchable, right: String) -> ResultSet
+{
+    return left.search(right, recursive: true)
+}
+
+postfix operator * {}
+
+public postfix func * (operand: Searchable) -> ResultSet
+{
+	return operand.search(WildCard.Everything)
+}
