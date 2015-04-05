@@ -10,8 +10,9 @@ import Foundation
 
 public protocol Searchable
 {
-    func search(key: String, recursive: Bool) -> ResultSet;
-    func search(index: Int) -> ResultSet;
+    func search(key: String, recursive: Bool) -> ResultSet
+    func search(index: Int) -> ResultSet
+    func search(wildCard: WildCard) -> ResultSet
 }
 
 public class ResultSet: Searchable
@@ -20,6 +21,8 @@ public class ResultSet: Searchable
 
     public var count: Int { return results.count }
 
+    // MARK: Append various things to a result set
+
     func append(aThing: JSON)
     {
         results.append(aThing)
@@ -27,8 +30,15 @@ public class ResultSet: Searchable
 
     func append(someResults: ResultSet)
     {
-        results += someResults.results
+        self.append(someResults.results)
     }
+
+    func append(someResults: [JSON])
+    {
+        results += someResults
+    }
+
+    // MARK: Searchable protocol
 
     public func search(key: String, recursive: Bool = false) -> ResultSet
     {
@@ -49,14 +59,19 @@ public class ResultSet: Searchable
         }
         return ret
     }
+
+    public func search(wildCard: WildCard) -> ResultSet
+    {
+        var ret = ResultSet()
+        for anObject in results
+        {
+            ret.append(anObject.search(wildCard))
+        }
+        return ret
+    }
 }
 
-public class JSONSearch
+public enum WildCard
 {
-
-}
-
-public class JSONSearchTerm
-{
-
+    case Everything
 }

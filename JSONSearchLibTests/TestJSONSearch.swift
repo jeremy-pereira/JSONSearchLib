@@ -77,6 +77,18 @@ class TestJSONSearch: XCTestCase
     }
 
 
+    func testObjectWildCard()
+    {
+        let results = theJSON.search(WildCard.Everything)
+        XCTAssert(results.count == 13, "Failed to get the right number of results, \(results.count)")
+    }
+
+    func testArrayWildCard()
+    {
+        let results = theJSON["Q039"]!["rules"]!.search(WildCard.Everything)
+        XCTAssert(results.count == 6, "Failed to get the right number of results, \(results.count)")
+    }
+
 
     func testPerformanceExample()
     {

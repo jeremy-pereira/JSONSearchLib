@@ -104,16 +104,17 @@ public class JSON: Searchable
 
     public func search(key: String, recursive: Bool = false) -> ResultSet
     {
-        var ret: ResultSet = ResultSet()
-
-        return ret
+        return ResultSet()
     }
 
     public func search(index: Int) -> ResultSet
     {
-        var ret: ResultSet = ResultSet()
+        return ResultSet()
+    }
 
-        return ret
+    public func search(wildCard: WildCard) -> ResultSet
+    {
+        return ResultSet()
     }
 }
 
@@ -166,6 +167,14 @@ public class JSONArray : JSON
 
         return ret
     }
+
+    override public func search(wildCard: WildCard) -> ResultSet
+    {
+        var ret = ResultSet()
+        ret.append(children)
+        return ret
+    }
+
 }
 
 public class JSONObject : JSON
@@ -203,6 +212,14 @@ public class JSONObject : JSON
             }
         }
 
+        return ret
+    }
+
+    override public func search(wildCard: WildCard) -> ResultSet
+    {
+        var ret = ResultSet()
+        let values = Array(children.values)
+        ret.append(values)
         return ret
     }
 
