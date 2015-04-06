@@ -136,7 +136,9 @@ class TestJSONSearch: XCTestCase
         // This is an example of a performance test case.
         self.measureBlock()
         {
-            theJSON.search("fields", recursive: true).search(0)
+            let resultSet = self.theJSON ** "fields" / 0
+            let aString = resultSet.toJSONArray().description
+            println("\(aString)")
         }
     }
 

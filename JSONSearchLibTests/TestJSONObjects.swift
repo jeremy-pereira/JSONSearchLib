@@ -10,6 +10,14 @@ import Cocoa
 import XCTest
 import JSONSearchLib
 
+extension JSON
+{
+    var isSerialisable: Bool
+    {
+		return NSJSONSerialization.isValidJSONObject(self)
+    }
+}
+
 class TestJSONObjects: XCTestCase
 {
 
@@ -130,5 +138,13 @@ class TestJSONObjects: XCTestCase
     {
         let aNull = theJSON["TestStuff"]?["null"] as? JSONNull
         XCTAssert(aNull != nil, "Didn't find the null object")
+    }
+
+    func testSave()
+    {
+        let someResults = theJSON ** "error"
+        let someJson = someResults.toJSONArray()
+        let data = someJson.toData(prettyPrint: true)
+        println("\(someJson)")
     }
 }

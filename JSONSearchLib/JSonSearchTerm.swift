@@ -69,6 +69,11 @@ public class ResultSet: Searchable
         }
         return ret
     }
+
+    public func toJSONArray() -> JSONArray
+    {
+        return JSONArray(results, parent: nil)
+    }
 }
 
 public enum WildCard
@@ -90,7 +95,7 @@ public func / (left: Searchable, right: Int) -> ResultSet
 
 infix operator **
 {
-	associativity none
+	associativity left
 	precedence 150
 }
 

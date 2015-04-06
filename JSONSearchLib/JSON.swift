@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class JSON: Searchable
+public class JSON: Searchable, Printable, DebugPrintable
 {
     private weak var _parent: JSON?
     public var parent: JSON? { return _parent }
@@ -23,22 +23,29 @@ public class JSON: Searchable
         var ret: JSON?
 		if let data = loadFile(fileName, error: &error)
         {
-            var nsError: NSError?
-			if let jsonObject: AnyObject
-                = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(),
-                                                                 error: &nsError)
-            {
-                ret = JSON.from(cocoaObject: jsonObject, parent: nil)
-            }
-            else
-            {
-                error = JSONError(nsError: nsError!)
-            }
+            ret = load(data: data, error: &error)
         }
         return ret
     }
 
-    class func loadFile(fileName: String, inout error: JSONError?) -> NSData?
+    public class func load(#data: NSData, inout error: JSONError?) -> JSON?
+    {
+        var ret: JSON?
+        var nsError: NSError?
+        if let jsonObject: AnyObject
+            = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(),
+                error: &nsError)
+        {
+            ret = JSON.from(cocoaObject: jsonObject, parent: nil)
+        }
+        else
+        {
+            error = JSONError(nsError: nsError!)
+        }
+        return ret
+    }
+
+    private class func loadFile(fileName: String, inout error: JSONError?) -> NSData?
     {
         var ret: NSData?
 
@@ -71,7 +78,6 @@ public class JSON: Searchable
         }
         else if let cocoaObject = cocoaObject as? NSNumber
         {
-            println("objCType: \(cocoaObject.objCType)")
             if cocoaObject.isBool
             {
                 ret = JSONBool(cocoaObject, parent: parent)
@@ -116,6 +122,35 @@ public class JSON: Searchable
     {
         return ResultSet()
     }
+
+    public func toData(#prettyPrint: Bool) -> NSData
+    {
+        var options: NSJSONWritingOptions
+        	= prettyPrint ? NSJSONWritingOptions.PrettyPrinted : NSJSONWritingOptions.allZeros
+        var error : NSError?
+        var data = NSJSONSerialization.dataWithJSONObject(self.toNSObject(), options: options, error: &error)
+        if data == nil
+        {
+            fatalError("Could not serialise the JSON, reason: \(error?.localizedDescription)")
+        }
+        return data!
+    }
+
+    private func toNSObject() -> AnyObject
+    {
+		fatalError("\(self.dynamicType): Cannot convert to NSObjects, needs override")
+    }
+
+    public var description: String
+        {
+            var data = self.toData(prettyPrint: true)
+            return NSString(data: data, encoding: NSUTF8StringEncoding) as! String
+    }
+
+    public var debugDescription: String
+        {
+            return description
+    }
 }
 
 public class JSONArray : JSON
@@ -129,6 +164,12 @@ public class JSONArray : JSON
         {
             children.append(JSON.from(cocoaObject: anObject, parent: self))
         }
+    }
+
+    init(_ jsonObjects: [JSON], parent: JSON?)
+    {
+        super.init(parent: parent)
+        children = jsonObjects
     }
 
     public override subscript(i : Int) -> JSON?
@@ -175,6 +216,15 @@ public class JSONArray : JSON
         return ret
     }
 
+    override private func toNSObject() -> AnyObject
+    {
+        var ret: NSMutableArray = []
+        for child in children
+        {
+            ret.addObject(child.toNSObject())
+        }
+        return ret
+    }
 }
 
 public class JSONObject : JSON
@@ -223,6 +273,15 @@ public class JSONObject : JSON
         return ret
     }
 
+    override private func toNSObject() -> AnyObject
+    {
+        var ret: NSMutableDictionary = [:]
+        for key in children.keys
+        {
+            ret.setObject(children[key]!.toNSObject(), forKey: key)
+        }
+        return ret
+    }
 }
 
 public class JSONNumber : JSON
@@ -236,6 +295,18 @@ public class JSONNumber : JSON
     }
 
     public var number: NSNumber { return value }
+
+
+    override private func toNSObject() -> AnyObject
+    {
+        return number as NSNumber
+    }
+
+    override public var description: String
+    {
+            return number.description
+    }
+
 }
 
 public class JSONString : JSON
@@ -249,6 +320,16 @@ public class JSONString : JSON
     }
 
     public var string: String { return value }
+
+    override private func toNSObject() -> AnyObject
+    {
+        return string as NSString
+    }
+
+    override public var description: String
+    {
+            return string
+    }
 }
 
 public class JSONBool : JSON, BooleanType
@@ -262,11 +343,30 @@ public class JSONBool : JSON, BooleanType
     }
 
     public var boolValue: Bool { return _value }
+
+    override private func toNSObject() -> AnyObject
+    {
+        return NSNumber(bool: boolValue)
+    }
+
+    override public var description: String
+    {
+            return _value.description
+    }
 }
 
 
 public class JSONNull : JSON
 {
+    override private func toNSObject() -> AnyObject
+    {
+        return NSNull()
+    }
+
+    override public var description: String
+    {
+            return "null"
+    }
 }
 
 private let trueNumber = NSNumber(bool: true)
