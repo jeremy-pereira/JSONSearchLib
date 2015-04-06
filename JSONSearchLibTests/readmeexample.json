@@ -1,0 +1,12 @@
+{
+	"projects" : [
+          {
+              "name" : "JSONSearchLib",
+              "url" : "https://bitbucket.org/jeremy-pereira/jsonsearchlib"
+          },
+          {
+              "name" : "EnigmaMachine",
+              "url" : "https://bitbucket.org/jeremy-pereira/enigmamachine"
+          }
+    ]
+}

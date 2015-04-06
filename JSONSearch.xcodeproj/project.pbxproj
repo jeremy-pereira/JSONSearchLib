@@ -17,7 +17,7 @@
 		FC84BDF71ACF0AAD00E1BB23 /* s10rules_england_en.json in Resources */ = {isa = PBXBuildFile; fileRef = FC84BDF61ACF0AAD00E1BB23 /* s10rules_england_en.json */; };
 		FC84BDF91ACFE01C00E1BB23 /* TestJSONObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC84BDF81ACFE01C00E1BB23 /* TestJSONObjects.swift */; };
 		FC84BDFB1AD074B000E1BB23 /* TestJSONSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC84BDFA1AD074B000E1BB23 /* TestJSONSearch.swift */; };
-		FC84BDFD1AD29BCE00E1BB23 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = FC84BDFC1AD29BCE00E1BB23 /* README.md */; };
+		FC84BDFF1AD2AB9700E1BB23 /* readmeexample.json in Resources */ = {isa = PBXBuildFile; fileRef = FC84BDFE1AD2AB9700E1BB23 /* readmeexample.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,7 +57,7 @@
 		FC84BDF61ACF0AAD00E1BB23 /* s10rules_england_en.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = s10rules_england_en.json; sourceTree = "<group>"; };
 		FC84BDF81ACFE01C00E1BB23 /* TestJSONObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestJSONObjects.swift; sourceTree = "<group>"; };
 		FC84BDFA1AD074B000E1BB23 /* TestJSONSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestJSONSearch.swift; sourceTree = "<group>"; };
-		FC84BDFC1AD29BCE00E1BB23 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		FC84BDFE1AD2AB9700E1BB23 /* readmeexample.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = readmeexample.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,7 +139,6 @@
 			children = (
 				FC84BDE81ACEBF3F00E1BB23 /* JSONSearchLibTests.swift */,
 				FC84BDF81ACFE01C00E1BB23 /* TestJSONObjects.swift */,
-				FC84BDFC1AD29BCE00E1BB23 /* README.md */,
 				FC84BDE61ACEBF3F00E1BB23 /* Supporting Files */,
 				FC84BDFA1AD074B000E1BB23 /* TestJSONSearch.swift */,
 			);
@@ -151,6 +150,7 @@
 			children = (
 				FC84BDF61ACF0AAD00E1BB23 /* s10rules_england_en.json */,
 				FC84BDE71ACEBF3F00E1BB23 /* Info.plist */,
+				FC84BDFE1AD2AB9700E1BB23 /* readmeexample.json */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -273,6 +273,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC84BDFF1AD2AB9700E1BB23 /* readmeexample.json in Resources */,
 				FC84BDF71ACF0AAD00E1BB23 /* s10rules_england_en.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,7 +295,6 @@
 			files = (
 				FC84BDF51ACEE30800E1BB23 /* JSONError.swift in Sources */,
 				FC84BDF11ACEC2E300E1BB23 /* JSON.swift in Sources */,
-				FC84BDFD1AD29BCE00E1BB23 /* README.md in Sources */,
 				FC84BDF31ACEE02100E1BB23 /* JSonSearchTerm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

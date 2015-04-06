@@ -14,23 +14,32 @@ class TestJSONSearch: XCTestCase
 {
 
     let resourceName = "s10rules_england_en"
+    let readmeName = "readmeexample"
     let resourceExtension  = "json"
 
     var theJSON : JSON!
+    var readmeJSON : JSON!
 
     override func setUp()
     {
         super.setUp()
         var testFileName: String
+        theJSON = loadResourceJson(resourceName, ext: resourceExtension)
+        readmeJSON = loadResourceJson(readmeName, ext: resourceExtension)
+    }
+
+    private func loadResourceJson(fileName: String, ext: String) -> JSON
+    {
+        var ret: JSON
         let theBundle = NSBundle(forClass: JSONSearchLibTests.self)
-        if let resourcePath = theBundle.pathForResource(resourceName, ofType: resourceExtension)
+        if let resourcePath = theBundle.pathForResource(fileName, ofType: ext)
         {
             var error: JSONError?
-            testFileName = resourcePath
-            var someJSON = JSON.load(fileName: testFileName, error: &error)
+            var someJSON = JSON.load(fileName: resourcePath, error: &error)
             if let someJSON = someJSON
             {
                 theJSON = someJSON
+                ret = theJSON
             }
             else
             {
@@ -41,6 +50,7 @@ class TestJSONSearch: XCTestCase
         {
             fatalError("Cannot resolve resource path for \(resourceName).\(resourceExtension)")
         }
+        return ret
     }
 
     override func tearDown()
@@ -139,6 +149,14 @@ class TestJSONSearch: XCTestCase
             let resultSet = self.theJSON ** "fields" / 0
             let aString = resultSet.toJSONArray().description
             println("\(aString)")
+        }
+    }
+
+    func testReadme()
+    {
+		if let nameElement = readmeJSON["projects"]?[0]?["name"]
+        {
+            println("\(nameElement)") // Prints "JSONSearchLib"
         }
     }
 
